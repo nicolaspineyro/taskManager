@@ -44,7 +44,7 @@ const typeDefs = gql`
 
     input taskInput {
         name: String!
-        project: String!
+        project: String
     }
 
     type Mutation {

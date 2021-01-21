@@ -13,11 +13,28 @@ const CREATE_PROJECT = gql`
     }
 `;
 
+const GET_PROJECTS = gql`
+    query getProjects {
+        getProjects {
+            id
+            name
+        }
+    }
+`;
+
 const NewProject = () => {
 
     const navigation = useNavigation();
 
-    const [createProject] = useMutation(CREATE_PROJECT)
+    const [createProject] = useMutation(CREATE_PROJECT, {
+        update(cache, {data: {createProject}}) {
+            const {getProjects} = cache.readQuery({query: GET_PROJECTS});
+            cache.writeQuery({
+                query: GET_PROJECTS,
+                data: {getProjects: getProjects.concat([createProject])}
+            })
+        }
+    })
 
     const [name, setName] = useState('');
     const [message, setMessage] = useState(null);

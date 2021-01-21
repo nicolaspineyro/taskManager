@@ -9,6 +9,7 @@ import Login from './src/views/Login';
 import SignIn from './src/views/SignIn';
 import Projects from './src/views/Projects';
 import NewProject from './src/views/NewProject';
+import Project from './src/views/Project';
 
 const Stack = createStackNavigator();
 
@@ -57,7 +58,7 @@ const App = () => {
                 }
               }}
             />
-             <Stack.Screen
+            <Stack.Screen
               name="NewProject"
               component={NewProject}
               options={{
@@ -71,6 +72,22 @@ const App = () => {
                   fontWeight: 'bold'
                 }
               }}
+            />
+            <Stack.Screen
+              name="Project"
+              component={Project}
+              options={({ route }) => (
+                {
+                  headerTitleAlign: 'center',
+                  title: route.params.name,
+                  headerStyle: {
+                    backgroundColor: '#28303D',
+                  },
+                  headerTintColor: '#fff',
+                  headerTitleStyle: {
+                    fontWeight: 'bold'
+                  }
+                })}
             />
           </Stack.Navigator>
         </NavigationContainer>
