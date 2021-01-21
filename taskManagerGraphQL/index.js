@@ -17,10 +17,11 @@ const server = new ApolloServer({
         const token = req.headers['authorization'] || '';
         if (token) {
             try {
-                const user = jws.verify(token, process.env.SECRET);
+                const user = jws.verify(token.replace('Bearer ', ''), process.env.SECRET);
+                console.log(user)
                 return {
                     user
-                }
+                }  
             } catch (error) {
                 console.log(error)
             }

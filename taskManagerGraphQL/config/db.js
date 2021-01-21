@@ -9,10 +9,10 @@ const connectDB = async () => {
             useFindAndModify: false,
             useCreateIndex: true
         });
-        console.log('DB connected correctly.')
+        console.log('DB connected correctly.');
     } catch (error) {
         console.log('There was an error', error);
-        process.exit(1)
+        process.exit(1);
     }
 }
 
